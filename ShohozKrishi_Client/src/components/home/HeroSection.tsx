@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useGetSiteContentQuery } from '@/redux/api/siteContentApi';
 
-const DEFAULT_HERO_IMAGE = '/images/hero-krishi.svg';
+const DEFAULT_HERO_IMAGE = '/images/hero-krishi.webp';
 
 interface HeroSlide {
     _id?: string;
@@ -59,7 +59,7 @@ const HeroSection: React.FC = () => {
                 up with the cards below it. Its width rule lives in globals.css. */}
             <div className="container mx-auto py-4 sm:py-5">
                 <div
-                    className="relative w-full aspect-[3/1] lg:aspect-[2293/590] rounded-md overflow-hidden bg-slate-100 group shadow-sm"
+                    className="relative w-full aspect-[2000/750] rounded-md overflow-hidden bg-slate-100 group shadow-sm"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
