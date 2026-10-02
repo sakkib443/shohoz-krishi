@@ -3,6 +3,7 @@ import app from './app';
 import config from './app/config';
 import { initSocket, closeSocket } from './app/utils/socket';
 import { startCourierAutoSync } from './app/modules/courier/courier.cron';
+import { bootstrapSuperadmin } from './app/utils/bootstrapAdmin';
 
 process.on('uncaughtException', (error) => {
     console.error('💥 UNCAUGHT EXCEPTION! Shutting down...');
@@ -55,7 +56,9 @@ export async function connectDB(): Promise<typeof mongoose> {
 }
 
 // ── Connect immediately ───────────────────────────────────────────
-connectDB().catch((err) => console.error('❌ Initial MongoDB connection failed:', err));
+connectDB()
+    .then(() => bootstrapSuperadmin())
+    .catch((err) => console.error('❌ Initial MongoDB connection failed:', err));
 
 // ── Start Server ─────────────────────────────────────────────────
 const server = app.listen(config.port, () => {
