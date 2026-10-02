@@ -1,0 +1,20 @@
+{
+  "name": "shohoz-krishi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shohoz Krishi — single-vendor online store. Next.js storefront + admin (ShohozKrishi_Client) and Express API (ShohozKrishi_Server).",
+  "scripts": {
+    "install:all": "npm --prefix ShohozKrishi_Server install && npm --prefix ShohozKrishi_Client install",
+    "dev": "node scripts/dev.mjs",
+    "dev:api": "npm --prefix ShohozKrishi_Server run start:dev",
+    "dev:web": "npm --prefix ShohozKrishi_Client run dev",
+    "build": "npm --prefix ShohozKrishi_Server run build && npm --prefix ShohozKrishi_Client run build",
+    "build:api": "npm --prefix ShohozKrishi_Server run build",
+    "build:web": "npm --prefix ShohozKrishi_Client run build",
+    "typecheck": "cd ShohozKrishi_Server && npx tsc --noEmit && cd ../ShohozKrishi_Client && npx tsc --noEmit",
+    "lint:web": "npm --prefix ShohozKrishi_Client run lint"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
