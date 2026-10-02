@@ -20,17 +20,17 @@ export default function SeoPage() {
                         fields={[
                             {
                                 key: 'title', label: 'Title', required: true, maxLength: 60,
-                                placeholder: 'Shohoz Krishi — Kitchenware online in Bangladesh',
+                                placeholder: 'Shohoz Krishi — Agriculture supplies online in Bangladesh',
                                 hint: 'The blue link in Google results. Around 50–60 characters shows in full.',
                             },
                             {
                                 key: 'description', label: 'Description', multiline: true, maxLength: 160,
-                                placeholder: 'Cookware, dinnerware and kitchen tools, delivered across Bangladesh…',
+                                placeholder: 'Seeds, fertilizer and farm tools, delivered across Bangladesh…',
                                 hint: 'The two lines under the link. Around 150–160 characters shows in full.',
                             },
                             {
                                 key: 'keywords', label: 'Keywords', maxLength: 250,
-                                placeholder: 'kitchenware, cookware bangladesh, non-stick pan, …',
+                                placeholder: 'seeds, fertilizer, pesticide, farm tools bangladesh, …',
                                 hint: 'Comma-separated. Google ignores these for ranking; some other engines still read them.',
                             },
                         ]}
@@ -38,7 +38,7 @@ export default function SeoPage() {
                 </div>
                 <div className="space-y-6">
                     <HowTo title="Writing them well" steps={[
-                        <>Put what you sell and where first: “Kitchenware in Bangladesh” beats “Welcome to our shop”.</>,
+                        <>Put what you sell and where first: “Agriculture supplies in Bangladesh” beats “Welcome to our shop”.</>,
                         <>Write the description for a person deciding whether to click — mention delivery, cash on delivery, or what makes the shop different.</>,
                         <>Each product page already uses the product’s own name and description; nothing to do there.</>,
                     ]} />

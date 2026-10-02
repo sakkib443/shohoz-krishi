@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useGetSiteContentQuery } from '@/redux/api/siteContentApi';
 
-const DEFAULT_HERO_IMAGE = '/images/hero-01.webp';
+const DEFAULT_HERO_IMAGE = '/images/hero-krishi.svg';
 
 interface HeroSlide {
     _id?: string;

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 309" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Shohoz Krishi — agriculture marketplace">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1faf2"/>
+      <stop offset="1" stop-color="#d7efdb"/>
+    </linearGradient>
+    <linearGradient id="pill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2f9e44"/>
+      <stop offset="1" stop-color="#1b8a30"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffe9a6"/>
+      <stop offset="1" stop-color="#ffe9a6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- sky -->
+  <rect width="1200" height="309" fill="url(#sky)"/>
+  <!-- sun -->
+  <circle cx="980" cy="86" r="120" fill="url(#sun)"/>
+  <circle cx="980" cy="86" r="46" fill="#ffd86b"/>
+
+  <!-- rolling hills -->
+  <path d="M0 214 Q 300 176 600 208 T 1200 202 L1200 309 L0 309 Z" fill="#a9e0b4"/>
+  <path d="M0 246 Q 360 212 720 246 T 1200 240 L1200 309 L0 309 Z" fill="#5cbf63"/>
+  <path d="M0 276 Q 420 256 820 279 T 1200 274 L1200 309 L0 309 Z" fill="#2f9e44"/>
+  <!-- crop rows on the front field -->
+  <g stroke="#248537" stroke-width="2" opacity="0.5" fill="none">
+    <path d="M60 300 Q 500 283 1140 296"/>
+    <path d="M40 309 Q 520 290 1170 305"/>
+  </g>
+
+  <!-- wheat / plant cluster, right of centre (crop-safe) -->
+  <g transform="translate(936 262)" stroke="#1b8a30" stroke-width="3" stroke-linecap="round" fill="none">
+    <path d="M0 0 C -2 -26 -2 -44 0 -64"/>
+    <path d="M0 -20 C 10 -24 16 -32 16 -42"/>
+    <path d="M0 -20 C -10 -24 -16 -32 -16 -42"/>
+    <path d="M0 -40 C 9 -44 14 -51 14 -60"/>
+    <path d="M0 -40 C -9 -44 -14 -51 -14 -60"/>
+  </g>
+  <g transform="translate(975 262)" stroke="#248537" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85">
+    <path d="M0 0 C -2 -22 -2 -38 0 -54"/>
+    <path d="M0 -16 C 9 -20 14 -27 14 -36"/>
+    <path d="M0 -16 C -9 -20 -14 -27 -14 -36"/>
+  </g>
+
+  <!-- text block (kept within the mobile crop-safe centre) -->
+  <text x="150" y="120" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="3" fill="#1b8a30">FRESH FROM THE FARM</text>
+  <text x="148" y="178" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="58" font-weight="800" fill="#1f2d22">Shohoz Krishi</text>
+  <text x="150" y="214" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="21" font-weight="500" fill="#3a5a40">Seeds · Fertilizer · Pesticides · Farm Tools — across Bangladesh</text>
+  <!-- CTA pill -->
+  <rect x="150" y="236" width="172" height="46" rx="23" fill="url(#pill)"/>
+  <text x="236" y="265" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Shop Now  →</text>
+</svg>

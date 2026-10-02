@@ -25,10 +25,10 @@ const CtaBanner: React.FC = () => {
                 </span>
 
                 <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight">
-                    Everything your kitchen needs
+                    Everything your farm needs
                 </h2>
                 <p className="text-sm md:text-base text-white/75 mb-8 max-w-xl mx-auto leading-relaxed">
-                    Cookware, dinnerware and kitchen tools at honest prices — delivered to your door anywhere in Bangladesh.
+                    Seeds, fertilizer and farm tools at honest prices — delivered to your door anywhere in Bangladesh.
                 </p>
 
                 <Link

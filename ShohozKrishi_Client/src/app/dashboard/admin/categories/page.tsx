@@ -335,7 +335,7 @@ export default function CategoriesPage() {
                     <Field label="Name" required error={fieldErrors.name}>
                         <input
                             className={cx(INPUT, fieldErrors.name && 'border-red-300')}
-                            placeholder="e.g. Cookware, Kitchen Appliances"
+                            placeholder="e.g. Seeds, Fertilizers, Farm Tools"
                             value={form.name}
                             autoFocus
                             onChange={(e) => { setForm((p) => ({ ...p, name: e.target.value })); if (fieldErrors.name) setFieldErrors((p) => ({ ...p, name: '' })); }}

@@ -15,14 +15,14 @@
      --color-primary-rgb mirrors --color-primary as "r, g, b" so translucent
      tints can be written rgba(var(--color-primary-rgb), .12) instead of
      hardcoding the colour again. */
-  --color-primary: #f15a24;
-  --color-primary-rgb: 241, 90, 36;
-  --color-primary-dark: #dd4610;
-  --color-primary-light: #fde6de;
-  --color-primary-lightest: #fef3f0;
-  --color-primary-border: #fbcebd;
-  --color-primary-surface: #fef8f6;
-  --color-secondary: #f4784b;
+  --color-primary: #2f9e44;
+  --color-primary-rgb: 47, 158, 68;
+  --color-primary-dark: #1b8a30;
+  --color-primary-light: #e0f0e3;
+  --color-primary-lightest: #f0f8f2;
+  --color-primary-border: #c1e2c7;
+  --color-primary-surface: #f7fbf8;
+  --color-secondary: #6cbf4a;
   --color-accent: #ff4c4c;
   --color-background: #F8FAFC;
   --color-surface: #F8FAFC;

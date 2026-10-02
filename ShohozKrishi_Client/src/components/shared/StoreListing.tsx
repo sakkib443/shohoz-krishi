@@ -13,16 +13,14 @@ import { FiChevronDown, FiX, FiSearch, FiFilter, FiStar } from 'react-icons/fi';
 const LIMIT = 24;
 
 const FALLBACK_CATEGORIES = [
-    { _id: 'f-electronics', name: 'Electronics', icon: '📱' },
-    { _id: 'f-fashion', name: 'Fashion & Clothing', icon: '👗' },
-    { _id: 'f-home', name: 'Home & Kitchen', icon: '🏠' },
-    { _id: 'f-health', name: 'Health & Beauty', icon: '💊' },
-    { _id: 'f-sports', name: 'Sports & Outdoors', icon: '⚽' },
-    { _id: 'f-books', name: 'Books & Stationery', icon: '📚' },
-    { _id: 'f-grocery', name: 'Grocery & Food', icon: '🛒' },
-    { _id: 'f-toys', name: 'Toys & Kids', icon: '🧸' },
-    { _id: 'f-shoes', name: 'Shoes & Footwear', icon: '👟' },
-    { _id: 'f-accessories', name: 'Watches & Accessories', icon: '⌚' },
+    { _id: 'f-seeds', name: 'Seeds', icon: '🌱' },
+    { _id: 'f-fertilizers', name: 'Fertilizers', icon: '🌿' },
+    { _id: 'f-pesticides', name: 'Pesticides', icon: '🧴' },
+    { _id: 'f-farm-tools', name: 'Farm Tools', icon: '🧰' },
+    { _id: 'f-irrigation', name: 'Irrigation', icon: '💧' },
+    { _id: 'f-animal-feed', name: 'Animal Feed', icon: '🐄' },
+    { _id: 'f-saplings', name: 'Saplings', icon: '🌳' },
+    { _id: 'f-garden', name: 'Garden & Nursery', icon: '🪴' },
 ];
 
 const SORT_OPTIONS = [

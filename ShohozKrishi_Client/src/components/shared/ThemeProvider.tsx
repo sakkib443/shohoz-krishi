@@ -16,8 +16,8 @@ interface ThemeContextType {
 const DEFAULT_LOGO = '/logo.svg';
 
 const defaultTheme: ThemeContextType = {
-    primaryColor: '#f15a24',
-    secondaryColor: '#f4784b',
+    primaryColor: '#2f9e44',
+    secondaryColor: '#6cbf4a',
     logoUrl: DEFAULT_LOGO,
     faviconUrl: '',
     logoHeight: 42,
@@ -26,7 +26,7 @@ const defaultTheme: ThemeContextType = {
 
 /* Old defaults that were never explicitly set by an admin — ignore them
    so upgrading the brand color doesn't require a DB migration. */
-const LEGACY_PRIMARIES = new Set(['#4F46E5', '#4338CA', '#6366F1', '#F85606', '#f85606', 'var(--color-primary)', 'var(--color-primary)']);
+const LEGACY_PRIMARIES = new Set(['#4F46E5', '#4338CA', '#6366F1', '#F85606', '#f85606', '#f15a24', '#F15A24', 'var(--color-primary)']);
 
 const ThemeContext = createContext<ThemeContextType>(defaultTheme);
 

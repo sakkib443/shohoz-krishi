@@ -56,25 +56,25 @@ function resolveIcon(name: string, dbIcon?: string): string {
 }
 
 const LOCAL_CATEGORY_IMAGES: Record<string, string> = {
-    cookware: '/categories/cookware.webp',
-    dinnerware: '/categories/dinnerware.webp',
-    'kitchen-tools': '/categories/kitchen-tools.webp',
-    'food-storage': '/categories/food-storage.webp',
-    appliances: '/categories/appliances.webp',
-    bakeware: '/categories/bakeware.webp',
-    drinkware: '/categories/drinkware.webp',
-    cutlery: '/categories/cutlery.webp',
+    seeds: '/categories/seeds.svg',
+    fertilizers: '/categories/fertilizers.svg',
+    pesticides: '/categories/pesticides.svg',
+    'farm-tools': '/categories/farm-tools.svg',
+    irrigation: '/categories/irrigation.svg',
+    'animal-feed': '/categories/animal-feed.svg',
+    saplings: '/categories/saplings.svg',
+    'garden-nursery': '/categories/garden-nursery.svg',
 };
 
 const FALLBACK_CATEGORIES: Category[] = [
-    { _id: 'f-cookware',       name: 'Cookware',       slug: 'cookware',       icon: '🍳', image: LOCAL_CATEGORY_IMAGES.cookware },
-    { _id: 'f-dinnerware',     name: 'Dinnerware',     slug: 'dinnerware',     icon: '🍽️', image: LOCAL_CATEGORY_IMAGES.dinnerware },
-    { _id: 'f-kitchen-tools',  name: 'Kitchen Tools',  slug: 'kitchen-tools',  icon: '🔪', image: LOCAL_CATEGORY_IMAGES['kitchen-tools'] },
-    { _id: 'f-food-storage',   name: 'Food Storage',   slug: 'food-storage',   icon: '🫙', image: LOCAL_CATEGORY_IMAGES['food-storage'] },
-    { _id: 'f-appliances',     name: 'Appliances',     slug: 'appliances',     icon: '⚡', image: LOCAL_CATEGORY_IMAGES.appliances },
-    { _id: 'f-bakeware',       name: 'Bakeware',       slug: 'bakeware',       icon: '🧁', image: LOCAL_CATEGORY_IMAGES.bakeware },
-    { _id: 'f-drinkware',      name: 'Drinkware',      slug: 'drinkware',      icon: '🥤', image: LOCAL_CATEGORY_IMAGES.drinkware },
-    { _id: 'f-cutlery',        name: 'Cutlery',        slug: 'cutlery',        icon: '🍴', image: LOCAL_CATEGORY_IMAGES.cutlery },
+    { _id: 'f-seeds',           name: 'Seeds',            slug: 'seeds',           icon: '🌱', image: LOCAL_CATEGORY_IMAGES['seeds'] },
+    { _id: 'f-fertilizers',     name: 'Fertilizers',      slug: 'fertilizers',     icon: '🌿', image: LOCAL_CATEGORY_IMAGES['fertilizers'] },
+    { _id: 'f-pesticides',      name: 'Pesticides',       slug: 'pesticides',      icon: '🧴', image: LOCAL_CATEGORY_IMAGES['pesticides'] },
+    { _id: 'f-farm-tools',      name: 'Farm Tools',       slug: 'farm-tools',      icon: '🧰', image: LOCAL_CATEGORY_IMAGES['farm-tools'] },
+    { _id: 'f-irrigation',      name: 'Irrigation',       slug: 'irrigation',      icon: '💧', image: LOCAL_CATEGORY_IMAGES['irrigation'] },
+    { _id: 'f-animal-feed',     name: 'Animal Feed',      slug: 'animal-feed',     icon: '🐄', image: LOCAL_CATEGORY_IMAGES['animal-feed'] },
+    { _id: 'f-saplings',        name: 'Saplings',         slug: 'saplings',        icon: '🌳', image: LOCAL_CATEGORY_IMAGES['saplings'] },
+    { _id: 'f-garden-nursery',  name: 'Garden & Nursery', slug: 'garden-nursery',  icon: '🪴', image: LOCAL_CATEGORY_IMAGES['garden-nursery'] },
 ];
 
 function categoryImage(cat: Category): string | undefined {

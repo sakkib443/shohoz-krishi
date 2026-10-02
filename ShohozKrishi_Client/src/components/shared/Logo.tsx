@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * The Shohoz Krishi logo:  a brand-coloured disc holding a lidded pot with steam,
+ * The Shohoz Krishi logo:  a brand-coloured disc holding a young sprout,
  * next to a two-tone "Shohoz Krishi" wordmark.
  *
  * Drawn as inline SVG rather than loaded as an image so it stays crisp at every
@@ -13,21 +13,16 @@ import React from 'react';
 const BRAND = 'var(--color-primary)';
 const INK = '#202020';
 
-/** The disc + pot, on its own 48×48 grid. */
+/** The disc + sprout, on its own 48×48 grid. */
 const Mark = () => (
     <>
         <circle cx="24" cy="24" r="24" fill={BRAND} />
-        {/* steam — two thin curls */}
-        <g fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" opacity=".95">
-            <path d="M20.2 16.1c-1.5-1.1-1.5-2.6 0-3.7s1.5-2.6 0-3.7" />
-            <path d="M27.8 16.1c-1.5-1.1-1.5-2.6 0-3.7s1.5-2.6 0-3.7" />
-        </g>
-        {/* knob */}
-        <rect x="22.4" y="17.6" width="3.2" height="2.2" rx="1.1" fill="#ffffff" />
-        {/* lid — overhangs the body, so it reads as lid + handles in one shape */}
-        <rect x="12" y="20.4" width="24" height="3.2" rx="1.6" fill="#ffffff" />
-        {/* body — tapered, softly rounded base */}
-        <path d="M14.8 24.7h18.4l-1.35 9.1a3.4 3.4 0 0 1-3.36 2.9h-9a3.4 3.4 0 0 1-3.36-2.9z" fill="#ffffff" />
+        {/* stem */}
+        <path d="M24 37c0-6-.3-11 0-17.5" fill="none" stroke="#ffffff" strokeWidth="2.4" strokeLinecap="round" />
+        {/* left leaf */}
+        <path d="M23.3 26.2c-4.4 1-9.4-1.3-10.8-6.9 5.4-1.3 9.9 1.1 10.8 6.9z" fill="#ffffff" />
+        {/* right leaf, a little higher */}
+        <path d="M24.7 21.6c4.4 1 9.4-1.3 10.8-6.9-5.4-1.3-9.9 1.1-10.8 6.9z" fill="#ffffff" />
     </>
 );
 
@@ -56,7 +51,7 @@ const Logo: React.FC<LogoProps> = ({
     className,
 }) => {
     const wordFill = light ? '#ffffff' : INK;
-    const kitchenFill = light ? '#ffffff' : BRAND;
+    const accentFill = light ? '#ffffff' : BRAND;
 
     const svg = iconOnly ? (
         <svg
@@ -88,7 +83,7 @@ const Logo: React.FC<LogoProps> = ({
                 letterSpacing="-0.4"
             >
                 <tspan fill={wordFill}>Shohoz</tspan>
-                <tspan fill={kitchenFill}> Krishi</tspan>
+                <tspan fill={accentFill}> Krishi</tspan>
             </text>
         </svg>
     );
