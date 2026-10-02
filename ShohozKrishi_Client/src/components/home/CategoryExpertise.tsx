@@ -56,14 +56,14 @@ function resolveIcon(name: string, dbIcon?: string): string {
 }
 
 const LOCAL_CATEGORY_IMAGES: Record<string, string> = {
-    seeds: '/categories/seeds.svg',
-    fertilizers: '/categories/fertilizers.svg',
-    pesticides: '/categories/pesticides.svg',
-    'farm-tools': '/categories/farm-tools.svg',
-    irrigation: '/categories/irrigation.svg',
-    'animal-feed': '/categories/animal-feed.svg',
-    saplings: '/categories/saplings.svg',
-    'garden-nursery': '/categories/garden-nursery.svg',
+    seeds: '/categories/seeds.jpg',
+    fertilizers: '/categories/fertilizers.jpg',
+    pesticides: '/categories/pesticides.jpg',
+    'farm-tools': '/categories/farm-tools.jpg',
+    irrigation: '/categories/irrigation.jpg',
+    'animal-feed': '/categories/animal-feed.jpg',
+    saplings: '/categories/saplings.jpg',
+    'garden-nursery': '/categories/garden-nursery.jpg',
 };
 
 const FALLBACK_CATEGORIES: Category[] = [

@@ -33,14 +33,14 @@ const isCatImg = (c: Category) => Boolean(c.image || (c.icon && (c.icon.startsWi
 const getCatImg = (c: Category) => c.image || c.icon || '';
 
 const FALLBACK_CATEGORIES: Category[] = [
-    { _id: 'f-seeds',           name: 'Seeds',            slug: 'seeds',           icon: '🌱', image: '/categories/seeds.svg' },
-    { _id: 'f-fertilizers',     name: 'Fertilizers',      slug: 'fertilizers',     icon: '🌿', image: '/categories/fertilizers.svg' },
-    { _id: 'f-pesticides',      name: 'Pesticides',       slug: 'pesticides',      icon: '🧴', image: '/categories/pesticides.svg' },
-    { _id: 'f-farm-tools',      name: 'Farm Tools',       slug: 'farm-tools',      icon: '🧰', image: '/categories/farm-tools.svg' },
-    { _id: 'f-irrigation',      name: 'Irrigation',       slug: 'irrigation',      icon: '💧', image: '/categories/irrigation.svg' },
-    { _id: 'f-animal-feed',     name: 'Animal Feed',      slug: 'animal-feed',     icon: '🐄', image: '/categories/animal-feed.svg' },
-    { _id: 'f-saplings',        name: 'Saplings',         slug: 'saplings',        icon: '🌳', image: '/categories/saplings.svg' },
-    { _id: 'f-garden-nursery',  name: 'Garden & Nursery', slug: 'garden-nursery',  icon: '🪴', image: '/categories/garden-nursery.svg' },
+    { _id: 'f-seeds',           name: 'Seeds',            slug: 'seeds',           icon: '🌱', image: '/categories/seeds.jpg' },
+    { _id: 'f-fertilizers',     name: 'Fertilizers',      slug: 'fertilizers',     icon: '🌿', image: '/categories/fertilizers.jpg' },
+    { _id: 'f-pesticides',      name: 'Pesticides',       slug: 'pesticides',      icon: '🧴', image: '/categories/pesticides.jpg' },
+    { _id: 'f-farm-tools',      name: 'Farm Tools',       slug: 'farm-tools',      icon: '🧰', image: '/categories/farm-tools.jpg' },
+    { _id: 'f-irrigation',      name: 'Irrigation',       slug: 'irrigation',      icon: '💧', image: '/categories/irrigation.jpg' },
+    { _id: 'f-animal-feed',     name: 'Animal Feed',      slug: 'animal-feed',     icon: '🐄', image: '/categories/animal-feed.jpg' },
+    { _id: 'f-saplings',        name: 'Saplings',         slug: 'saplings',        icon: '🌳', image: '/categories/saplings.jpg' },
+    { _id: 'f-garden-nursery',  name: 'Garden & Nursery', slug: 'garden-nursery',  icon: '🪴', image: '/categories/garden-nursery.jpg' },
 ];
 
 const Header: React.FC = () => {
