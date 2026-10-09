@@ -7,7 +7,6 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/redux';
 import { removeFromCart, increaseQuantity, decreaseQuantity } from '@/redux/slices/cartSlice';
-import { loginSuccess } from '@/redux/slices/authSlice';
 import { useCreateOrderMutation, useGuestCheckoutMutation } from '@/redux/api/orderApi';
 import { useInitPaymentMutation } from '@/redux/api/paymentApi';
 import { useGetSiteContentQuery } from '@/redux/api/siteContentApi';
@@ -246,9 +245,7 @@ const CheckoutPage = () => {
         if (!formData.fullName.trim()) e.fullName = 'নাম লিখুন';
         if (!formData.phone.trim()) e.phone = 'ফোন নম্বর লিখুন';
         else if (!/^01\d{9}$/.test(formData.phone.replace(/[\s-]/g, ''))) e.phone = 'সঠিক ১১ সংখ্যার নম্বর দিন';
-        if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) e.email = 'সঠিক ইমেইল দিন';
         if (!formData.address.trim()) e.address = 'ঠিকানা লিখুন';
-        if (!formData.city.trim()) e.city = 'সিটি / জেলা লিখুন';
         // bKash / Nagad / Rocket / bank transfer need the payment's details so staff can check
         // it; COD is paid on delivery and needs none.
         if (MANUAL_METHODS.includes(selectedPayment)) {
@@ -320,9 +317,7 @@ const CheckoutPage = () => {
             shippingAddress: {
                 fullName: formData.fullName,
                 phone: formData.phone,
-                email: formData.email,
                 address: formData.address,
-                city: formData.city,
             },
             paymentMethod: selectedPayment,
             // Only manual payments (bKash / Nagad / Rocket / bank) carry the payment's details.
@@ -395,20 +390,6 @@ const CheckoutPage = () => {
                 try { localStorage.removeItem('shohozkrishi_selected_cart'); } catch {}
                 localStorage.removeItem(COUPON_STORAGE_KEY);
 
-                if (result.data?.accessToken && result.data?.user) {
-                    const userData = result.data.user;
-                    dispatch(loginSuccess({
-                        user: {
-                            id: userData._id,
-                            name: `${userData.firstName} ${userData.lastName}`.trim(),
-                            email: userData.email,
-                            phone: userData.phone || '',
-                            role: userData.role || 'user',
-                        },
-                        token: result.data.accessToken,
-                    }));
-                }
-
                 if (isGatewayMethod) {
                     const orderId = result?.data?.order?._id;
                     if (orderId) {
@@ -418,7 +399,6 @@ const CheckoutPage = () => {
                 }
 
                 const ord = result?.data?.order || result?.data;
-                toast.success('আপনার অ্যাকাউন্ট তৈরি হয়েছে।', { duration: 5000 });
                 setPlacedOrder({ _id: ord?._id, orderId: ord?.orderId || ord?.orderNumber });
             }
         } catch (err: any) {
@@ -476,12 +456,14 @@ const CheckoutPage = () => {
                         {MANUAL_METHODS.includes(selectedPayment) && ' আপনার পেমেন্ট যাচাই করে আমরা নিশ্চিত করব।'}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3 mt-7">
-                        <button
-                            onClick={() => router.push('/dashboard/user/orders')}
-                            className="flex-1 py-3 rounded-xl bg-[var(--color-primary)] text-white text-sm font-semibold hover:brightness-95 transition-all shadow-md shadow-[var(--color-primary)]/20"
-                        >
-                            আমার অর্ডার দেখুন
-                        </button>
+                        {isAuthenticated && (
+                            <button
+                                onClick={() => router.push('/dashboard/user/orders')}
+                                className="flex-1 py-3 rounded-xl bg-[var(--color-primary)] text-white text-sm font-semibold hover:brightness-95 transition-all shadow-md shadow-[var(--color-primary)]/20"
+                            >
+                                আমার অর্ডার দেখুন
+                            </button>
+                        )}
                         <button
                             onClick={() => router.push('/')}
                             className="flex-1 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm font-semibold hover:bg-gray-50 transition-all"
@@ -514,8 +496,8 @@ const CheckoutPage = () => {
                     <div className="mb-5 bg-blue-50 border border-blue-100 rounded-lg px-4 py-3 flex items-start gap-3">
                         <FiInfo size={16} className="text-blue-500 mt-0.5 flex-shrink-0" />
                         <p className="text-sm text-blue-700 leading-relaxed">
-                            অ্যাকাউন্ট লাগবে না। আমরা স্বয়ংক্রিয়ভাবে একটি তৈরি করে দেব — আপনার ইমেইলই হবে লগইন আইডি ও পাসওয়ার্ড।{' '}
-                            <Link href="/login?redirect=/checkout" className="font-medium underline">আগে থেকে অ্যাকাউন্ট আছে?</Link>
+                            অ্যাকাউন্ট ছাড়াই অর্ডার করতে পারবেন।{' '}
+                            <Link href="/login?redirect=/checkout" className="font-medium underline">আগে থেকে অ্যাকাউন্ট থাকলে লগইন করুন</Link>
                         </p>
                     </div>
                 )}
@@ -576,32 +558,15 @@ const CheckoutPage = () => {
                                         <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="আপনার নাম লিখুন" className={cls('fullName')} />
                                         <FieldError field="fullName" />
                                     </div>
-                                    <div>
+                                    <div className="md:col-span-2">
                                         <label className={labelClass}>ফোন নম্বর <span className="text-red-500">*</span></label>
                                         <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="01XXXXXXXXX" className={cls('phone')} />
                                         <FieldError field="phone" />
                                     </div>
-                                    <div>
-                                        <label className={labelClass}>ইমেইল {!isAuthenticated && <span className="text-gray-400">(লগইন আইডি)</span>} <span className="text-gray-400">(ঐচ্ছিক)</span></label>
-                                        <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="email@example.com" className={cls('email')} />
-                                        <FieldError field="email" />
-                                    </div>
                                     <div className="md:col-span-2">
                                         <label className={labelClass}>ঠিকানা <span className="text-red-500">*</span></label>
-                                        <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="বাসা, রোড, এলাকা" className={cls('address')} />
+                                        <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="বাসা, রোড, এলাকা, থানা, জেলা" className={cls('address')} />
                                         <FieldError field="address" />
-                                    </div>
-                                    <div className="md:col-span-2">
-                                        <label className={labelClass}>সিটি / জেলা <span className="text-red-500">*</span></label>
-                                        <input
-                                            type="text"
-                                            name="city"
-                                            value={formData.city}
-                                            onChange={handleChange}
-                                            placeholder="যেমন: ঢাকা, গাজীপুর, চট্টগ্রাম..."
-                                            className={cls('city')}
-                                        />
-                                        <FieldError field="city" />
                                     </div>
                                     {isAuthenticated && (
                                         <label className="md:col-span-2 flex items-center gap-2.5 mt-1 cursor-pointer select-none">
