@@ -6,7 +6,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
-    FiShoppingCart, FiChevronDown, FiMenu, FiX,
+    FiChevronDown, FiMenu, FiX,
     FiUser, FiHeart, FiPhone, FiMail, FiLogOut,
     FiGrid, FiBox, FiHeadphones, FiMapPin, FiGlobe,
 } from 'react-icons/fi';
@@ -33,14 +33,14 @@ const isCatImg = (c: Category) => Boolean(c.image || (c.icon && (c.icon.startsWi
 const getCatImg = (c: Category) => c.image || c.icon || '';
 
 const FALLBACK_CATEGORIES: Category[] = [
-    { _id: 'f-seeds',           name: 'Seeds',            slug: 'seeds',           icon: '🌱', image: '/categories/seeds.jpg' },
-    { _id: 'f-fertilizers',     name: 'Fertilizers',      slug: 'fertilizers',     icon: '🌿', image: '/categories/fertilizers.jpg' },
-    { _id: 'f-pesticides',      name: 'Pesticides',       slug: 'pesticides',      icon: '🧴', image: '/categories/pesticides.jpg' },
-    { _id: 'f-farm-tools',      name: 'Farm Tools',       slug: 'farm-tools',      icon: '🧰', image: '/categories/farm-tools.jpg' },
-    { _id: 'f-irrigation',      name: 'Irrigation',       slug: 'irrigation',      icon: '💧', image: '/categories/irrigation.jpg' },
-    { _id: 'f-animal-feed',     name: 'Animal Feed',      slug: 'animal-feed',     icon: '🐄', image: '/categories/animal-feed.jpg' },
-    { _id: 'f-saplings',        name: 'Saplings',         slug: 'saplings',        icon: '🌳', image: '/categories/saplings.jpg' },
-    { _id: 'f-garden-nursery',  name: 'Garden & Nursery', slug: 'garden-nursery',  icon: '🪴', image: '/categories/garden-nursery.jpg' },
+    { _id: 'f-cookware',      name: 'Cookware',       slug: 'cookware',       icon: '🍳', image: '/categories/cookware.webp' },
+    { _id: 'f-dinnerware',    name: 'Dinnerware',     slug: 'dinnerware',     icon: '🍽️', image: '/categories/dinnerware.webp' },
+    { _id: 'f-kitchen-tools', name: 'Kitchen Tools',  slug: 'kitchen-tools',  icon: '🔪', image: '/categories/kitchen-tools.webp' },
+    { _id: 'f-food-storage',  name: 'Food Storage',   slug: 'food-storage',   icon: '🫙', image: '/categories/food-storage.webp' },
+    { _id: 'f-appliances',    name: 'Appliances',     slug: 'appliances',     icon: '⚡', image: '/categories/appliances.webp' },
+    { _id: 'f-bakeware',      name: 'Bakeware',       slug: 'bakeware',       icon: '🧁', image: '/categories/bakeware.webp' },
+    { _id: 'f-drinkware',     name: 'Drinkware',      slug: 'drinkware',      icon: '🥤', image: '/categories/drinkware.webp' },
+    { _id: 'f-cutlery',       name: 'Cutlery',        slug: 'cutlery',        icon: '🍴', image: '/categories/cutlery.webp' },
 ];
 
 const Header: React.FC = () => {
@@ -59,7 +59,6 @@ const Header: React.FC = () => {
     const mobileSearchCatRef = useRef<HTMLDivElement>(null);
     const catMenuRef = useRef<HTMLDivElement>(null);
 
-    const cartItems = useAppSelector((state) => state.cart.items);
     const { count: wishlistCount } = useWishlist();
     const { user, isAuthenticated } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
@@ -347,22 +346,6 @@ const Header: React.FC = () => {
                                     Products
                                 </Link>
 
-                                <Link
-                                    href="/cart"
-                                    className="hidden sm:flex items-center justify-center w-[42px] h-[40px] rounded transition-colors hover:bg-[var(--color-primary-lightest)] cursor-pointer select-none"
-                                    style={{ color: 'var(--color-text-primary)' }}
-                                    aria-label="Cart"
-                                >
-                                    <div className="relative">
-                                        <FiShoppingCart size={22} strokeWidth={1.8} />
-                                        <span
-                                            className="absolute -top-2 -right-2.5 text-white text-[9px] min-w-[17px] h-[17px] px-0.5 rounded-full flex items-center justify-center font-bold ring-2 ring-white"
-                                            style={{ background: 'var(--color-sale)' }}
-                                        >
-                                            {cartItems.length > 99 ? '99+' : cartItems.length}
-                                        </span>
-                                    </div>
-                                </Link>
 
                                 {isAuthenticated && user ? (
                                     <div className="relative hidden sm:block" ref={profileRef}>
