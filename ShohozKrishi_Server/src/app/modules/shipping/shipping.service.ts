@@ -222,16 +222,14 @@ export async function computeShippingCost(
         }
     }
 
-    // Single flat delivery charge — no Inside/Outside split, no city guessing. A product
-    // may still carry its own charge (dearest line wins; free-delivery lines add nothing);
-    // with none, the flat Settings rate (defaultInsideDhakaRate) applies.
-    const flat = areaRates.inside_dhaka;
+    // 6) No area picked — guess it from the city text.
+    const guessedArea: DeliveryArea = cityStr.includes('dhaka') ? 'inside_dhaka' : 'outside_dhaka';
     return {
-        shippingCost: flat,
+        shippingCost: areaRates[guessedArea],
         estimatedDays: defaultDays,
         freeShipping: false,
         freeReason: null,
-        areaRates: { inside_dhaka: flat, outside_dhaka: flat },
+        areaRates,
     };
 }
 

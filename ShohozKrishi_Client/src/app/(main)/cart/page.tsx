@@ -377,15 +377,16 @@ const CartPage = () => {
     );
     const couponFreeShipping = Boolean(appliedCoupon?.freeShipping);
     const freeShipping = couponFreeShipping || (shippingQuote?.freeShipping ?? false);
-    // Delivery is added at checkout, so the cart total leaves it out and just shows
-    // the flat charge as info.
+    // The area (Inside / Outside Dhaka) is picked at checkout, so the cart total leaves
+    // delivery out and lists both charges instead.
     const shippingCost = 0;
 
-    // Live flat delivery charge + free-shipping threshold ("add ৳X more for free shipping").
-    // The quote already applies the product's own charge; Settings' rate is the
+    // Live delivery charges + free-shipping threshold ("add ৳X more for free shipping").
+    // The quote already applies the products' own charges; Settings' rate is the
     // fallback shown while it loads.
     const { data: shipSettings } = useGetShippingSettingsQuery();
-    const deliveryRate = shippingQuote?.shippingCost ?? (shipSettings?.defaultInsideDhakaRate ?? 60);
+    const insideRate = shippingQuote?.areaRates?.inside_dhaka ?? (shipSettings?.defaultInsideDhakaRate ?? 60);
+    const outsideRate = shippingQuote?.areaRates?.outside_dhaka ?? (shipSettings?.defaultOutsideDhakaRate ?? 120);
     const freeThreshold = shipSettings?.freeShippingByThresholdEnabled ? (shipSettings?.freeShippingThreshold || 0) : 0;
     const remainingForFree = freeThreshold > 0 && !freeShipping ? Math.max(0, freeThreshold - selectedSubtotal) : 0;
 
@@ -746,12 +747,15 @@ const CartPage = () => {
                                 <div className="flex justify-between text-sm">
                                     <span className="text-gray-500">
                                         Delivery
-                                        <span className="block text-xs text-gray-400">{freeShipping ? 'Free for this order' : 'Added at checkout'}</span>
+                                        <span className="block text-xs text-gray-400">{freeShipping ? 'Free for this order' : 'Choose your area at checkout'}</span>
                                     </span>
                                     {freeShipping ? (
                                         <span className="font-medium text-green-600">FREE</span>
                                     ) : (
-                                        <span className="font-semibold text-gray-900">৳{deliveryRate}</span>
+                                        <span className="text-right text-xs text-gray-600 leading-5">
+                                            Inside Dhaka <span className="font-semibold text-gray-900">৳{insideRate}</span><br />
+                                            Outside Dhaka <span className="font-semibold text-gray-900">৳{outsideRate}</span>
+                                        </span>
                                     )}
                                 </div>
                                 {remainingForFree > 0 && (
