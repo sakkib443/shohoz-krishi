@@ -59,20 +59,16 @@ const nextConfig: NextConfig = {
       // next/image refuses to optimise them.
       {
         protocol: "https",
-        hostname: "api.13.140.168.218.sslip.io",
-      },
-      {
-        protocol: "https",
-        hostname: "api.shohozkrishi.com",
+        hostname: "api-krishi.13.140.168.218.sslip.io",
       },
       // Production domain (uploaded images are served from the same origin).
       {
         protocol: "https",
-        hostname: "shohozkrishi.com",
+        hostname: "shohozkrishi.shop",
       },
       {
         protocol: "https",
-        hostname: "www.shohozkrishi.com",
+        hostname: "www.shohozkrishi.shop",
       },
       {
         protocol: "http",
