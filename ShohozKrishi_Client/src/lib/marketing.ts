@@ -67,7 +67,7 @@ const w = (): any => (typeof window === 'undefined' ? null : window);
  * is not configured (or blocked by an ad blocker) is skipped, and nothing here can
  * throw into the page that called it.
  */
-function send(event: EventName, items: TrackItem[], value: number, extra: Record<string, unknown> = {}) {
+function send(event: EventName, items: TrackItem[], value: number, extra: Record<string, unknown> = {}, eventId?: string) {
     const win = w();
     if (!win) return;
     const round = (n: number) => Math.round((Number(n) || 0) * 100) / 100;
@@ -91,7 +91,8 @@ function send(event: EventName, items: TrackItem[], value: number, extra: Record
         if (typeof win.gtag === 'function') {
             win.gtag('event', event, { currency: CURRENCY, value: total, items: gaItems, ...extra });
         }
-        // Meta Pixel.
+        // Meta Pixel. The event ID lets Meta count the browser copy and any server copy
+        // (Conversions API Gateway) of the same event once.
         if (typeof win.fbq === 'function') {
             win.fbq('track', META_EVENT[event], {
                 content_ids: items.map((i) => i.id),
@@ -100,16 +101,16 @@ function send(event: EventName, items: TrackItem[], value: number, extra: Record
                 num_items: items.reduce((s, i) => s + (i.quantity ?? 1), 0),
                 value: total,
                 currency: CURRENCY,
-            });
+            }, ...(eventId ? [{ eventID: eventId }] : []));
         }
-        // TikTok Pixel.
+        // TikTok Pixel (same de-duplication, under TikTok's own option name).
         if (win.ttq && typeof win.ttq.track === 'function') {
             win.ttq.track(TIKTOK_EVENT[event], {
                 contents: items.map((i) => ({ content_id: i.id, content_name: i.name, quantity: i.quantity ?? 1, price: round(i.price) })),
                 content_type: 'product',
                 value: total,
                 currency: CURRENCY,
-            });
+            }, ...(eventId ? [{ event_id: eventId }] : []));
         }
     } catch {
         // Tracking must never break shopping.
@@ -124,7 +125,8 @@ export const trackBeginCheckout = (items: TrackItem[], value: number) => send('b
 
 /**
  * An order was placed. Sent once per order even if the page re-renders or the
- * customer reloads it: the order number is remembered for the session.
+ * customer reloads it: the order number is remembered for the session. The order
+ * number is also the event ID, so the ad platforms count each order once.
  */
 export function trackPurchase(order: { id: string; value: number; shipping?: number }, items: TrackItem[]) {
     const win = w();
@@ -136,7 +138,7 @@ export function trackPurchase(order: { id: string; value: number; shipping?: num
     } catch {
         // No session storage (private mode): send anyway rather than never.
     }
-    send('purchase', items, order.value, { transaction_id: order.id, ...(order.shipping ? { shipping: order.shipping } : {}) });
+    send('purchase', items, order.value, { transaction_id: order.id, ...(order.shipping ? { shipping: order.shipping } : {}) }, `purchase-${order.id}`);
 }
 
 /**
